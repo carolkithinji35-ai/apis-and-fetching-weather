@@ -42,7 +42,6 @@ function displayWeather(alerts) {
   errorMessage.textContent = "";
   errorMessage.classList.add("hidden");
 
-  
   const header = document.createElement("h2");
   header.textContent = `Weather Alerts: ${alerts.length}`;
   alertsDisplay.appendChild(header);
@@ -55,7 +54,7 @@ function displayWeather(alerts) {
     const description =
       alert.properties.description || "No description available";
 
-    card.textContent = `${title} ${description}`;
+    card.textContent = `${title}: ${description}`;
 
     alertsDisplay.appendChild(card);
   });
@@ -73,7 +72,7 @@ button.addEventListener("click", () => {
   const state = input.value.trim().toUpperCase();
 
   fetchWeatherData(state);
-
-  // REQUIRED for test
+  //reset input field
+  //required by test
   input.value = "";
 });
