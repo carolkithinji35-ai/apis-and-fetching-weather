@@ -73,6 +73,5 @@ button.addEventListener("click", () => {
 
   fetchWeatherData(state);
   //reset input field
-  //required by test
   input.value = "";
 });
