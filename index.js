@@ -1,7 +1,7 @@
-// index.js
+
 const weatherApi = "https://api.weather.gov/alerts/active?area=";
 
-// Your code here!
+
 const input = document.getElementById("state-input");
 const button = document.getElementById("fetch-alerts");
 const alertsDisplay = document.getElementById("alerts-display");
@@ -15,12 +15,14 @@ function fetchWeatherData(state) {
   }
 
   fetch(weatherApi + state)
+    //check if response is ok, if not throw error, otherwise parse json
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch weather data.");
       }
       return response.json();
     })
+    //check if data has features array, if not throw error, otherwise display weather
     .then((data) => {
       const alerts = data.features;
 
@@ -44,12 +46,13 @@ function displayWeather(alerts) {
 
   const header = document.createElement("h2");
   header.textContent = `Weather Alerts: ${alerts.length}`;
+  //display header with number of alerts
   alertsDisplay.appendChild(header);
 
   alerts.forEach((alert) => {
     const card = document.createElement("div");
     card.classList.add("alert-card");
-
+    //Display title and description, with fallback if not available
     const title = alert.properties.headline || "No title available";
     const description =
       alert.properties.description || "No description available";
